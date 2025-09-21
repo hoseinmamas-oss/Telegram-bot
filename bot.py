@@ -1,5 +1,6 @@
 # bot.py
 import os
+from telegram.ext import Updater, CommandHandler
 import asyncio
 import tempfile
 import subprocess
@@ -23,7 +24,14 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("tgbot")
 
 # ---------- تنظیمات از محیط (هیچ توکنی هاردکد نکن)
-TELEGRAM_BOT_TOKEN = os.getenv("7506339947:AAG-2OyscYMvVXrUzwYsw0-anA1VYqTdPDU")
+TELEGRAM_BOT_TOKEN = os.getenv("7506339947:AAG-2OyscYMvVXrUzwYsw0-anA1VYqTdPDU")  # BOT_TOKEN همون متغیر محیطیه که تو Render ست می‌کنید
+updater = Updater(token=TOKEN, use_context=True) dispatcher = updater.dispatcher
+ 
+def start(update, context): update.message.reply_text("سلام! ربات من روی Render ران شده 🚀")
+ 
+dispatcher.add_handler(CommandHandler("start", start))
+ 
+updater.start_polling() updater.idle() قسمت bot token چی بزنم
 YOUTUBE_API_KEY = os.getenv("AIzaSyBEXaveIVj5w7dFDiDP-J1rGp7ES77LZP8")       # برای metadata YouTube
 SPOTIFY_CLIENT_ID = os.getenv("ebc4362782aa4bebbbbfe6ff0a0cdbea")
 SPOTIFY_CLIENT_SECRET = os.getenv("ac08c1705e7442748091bba9024cd6f7")
